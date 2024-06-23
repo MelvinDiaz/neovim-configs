@@ -25,6 +25,8 @@ lspconfig.tsserver.setup {
 lspconfig.clangd.setup {
   on_attach = function (client, bufnr)
     client.server_capabilities_signatureHelpProvider = false
+    cmd = { "clangd", "--background-index", "--header-insertion=iwyu", "--suggest-missing-includes" }
+    root_dir = vim.loop.cwd()
     on_attach(client, bufnr)
   end,
   capabilities = capabilities,
